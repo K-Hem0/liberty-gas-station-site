@@ -1,130 +1,150 @@
 {
-  "sections": [
+  "business": {
+    "name": "Liberty Gas Station",
+    "phone": "+15402980340",
+    "address": ["607 7th St", "Elkton, VA 22827"],
+    "hours": {
+      "Monday": "5 AM–10 PM",
+      "Tuesday": "5 AM–10 PM",
+      "Wednesday": "5 AM–10 PM",
+      "Thursday": "5 AM–10 PM",
+      "Friday": "5 AM–10 PM",
+      "Saturday": "6 AM–10 PM",
+      "Sunday": "6 AM–10 PM"
+    }
+  },
+  "menu": [
     {
-      "title": "Breakfast",
-      "categories": [
+      "section": "Breakfast",
+      "groups": [
         {
-          "name": "Biscuits",
+          "title": "Biscuits",
           "items": [
-            {"name": "Sausage Biscuit", "price": "1.99", "allergens": "Wheat/Gluten, Dairy (if cheese), Pork"},
-            {"name": "Bacon Biscuit", "price": "1.99", "allergens": "Wheat/Gluten; Pork"},
-            {"name": "Chicken Biscuit", "price": "2.99", "allergens": "Wheat/Gluten; Poultry"},
-            {"name": "Ham Biscuit", "price": "1.99", "allergens": "Wheat/Gluten; Pork"},
-            {"name": "Sausage & Cheese Biscuit", "price": "2.49", "allergens": "Wheat/Gluten, Dairy; Pork"},
-            {"name": "Ham & Cheese Biscuit", "price": "2.49", "allergens": "Wheat/Gluten, Dairy; Pork"},
-            {"name": "Sausage, Ham & Cheese Biscuit", "price": "2.99", "allergens": "Wheat/Gluten, Dairy; Pork"}
+            { "name": "Sausage Biscuit", "price": "$1.99", "allergens": "Allergens: wheat/gluten, dairy (if cheese), pork." },
+            { "name": "Bacon Biscuit", "price": "$1.99", "allergens": "Allergens: wheat/gluten; pork." },
+            { "name": "Chicken Biscuit", "price": "$2.99", "allergens": "Allergens: wheat/gluten; poultry." },
+            { "name": "Ham Biscuit", "price": "$1.99", "allergens": "Allergens: wheat/gluten; pork." },
+            { "name": "Sausage & Cheese Biscuit", "price": "$2.49", "allergens": "Allergens: wheat/gluten, dairy; pork." },
+            { "name": "Ham & Cheese Biscuit", "price": "$2.49", "allergens": "Allergens: wheat/gluten, dairy; pork." },
+            { "name": "Sausage, Ham & Cheese Biscuit", "price": "$2.99", "allergens": "Allergens: wheat/gluten, dairy; pork." }
           ]
         },
         {
-          "name": "Breakfast Pizza (Slice)",
+          "title": "Breakfast Pizza (Slice)",
           "items": [
-            {"name": "Sausage", "price": "2.99", "allergens": "Wheat/Gluten, Dairy; Pork"},
-            {"name": "Sausage & Egg", "price": "2.99", "allergens": "Wheat/Gluten, Dairy, Egg; Pork"}
+            { "name": "Sausage", "price": "$2.99", "allergens": "Allergens: wheat/gluten, dairy; pork." },
+            { "name": "Sausage & Egg", "price": "$2.99", "allergens": "Allergens: wheat/gluten, dairy, egg; pork." }
           ]
         },
         {
-          "name": "Pancakes",
+          "title": "Pancakes",
           "items": [
-            {"name": "Pancakes w/ Hash Brown & Sausage", "price": "8.99", "allergens": "Wheat/Gluten, Dairy, Egg; Pork"},
-            {"name": "Pancakes w/ Hash Brown & 2 Strips of Bacon", "price": "8.99", "allergens": "Wheat/Gluten, Dairy, Egg; Pork"}
+            { "name": "Pancakes w/ Hash Brown & Sausage", "price": "$8.99", "allergens": "Allergens: wheat/gluten, dairy, egg; pork." },
+            { "name": "Pancakes w/ Hash Brown & 2 Strips of Bacon", "price": "$8.99", "allergens": "Allergens: wheat/gluten, dairy, egg; pork." }
           ]
         },
         {
-          "name": "Breakfast Specialty",
+          "title": "Breakfast Specialty",
           "items": [
-            {"name": "Sausage Calzone (each)", "price": "5.99", "allergens": "Wheat/Gluten, Dairy; Pork"}
+            { "name": "Sausage Calzone (each)", "price": "$5.99", "allergens": "Allergens: wheat/gluten, dairy; pork." }
           ]
         },
         {
-          "name": "Breakfast Sides",
+          "title": "Breakfast Sides",
           "items": [
-            {"name": "Hash Brown", "price": "1.49", "allergens": "Shared fryer (possible gluten cross-contact)"},
-            {"name": "Potato Wedges", "price": "2.99", "allergens": "Shared fryer; may contain Wheat if breaded"},
-            {"name": "Mozzarella Stick (each)", "price": "1.25", "allergens": "Dairy; may be breaded (Wheat)"}
+            { "name": "Hash Brown", "price": "$1.49", "allergens": "Allergens: cooked in shared fryer (possible gluten cross-contact)." },
+            { "name": "Potato Wedges", "price": "$2.99", "allergens": "Allergens: cooked in shared fryer; may contain wheat if breaded." },
+            { "name": "Mozzarella Stick (each)", "price": "$1.25", "allergens": "Allergens: dairy; may be breaded (wheat)." }
           ]
         }
       ]
     },
+
     {
-      "title": "Lunch & Dinner",
-      "categories": [
+      "section": "Lunch & Dinner",
+      "groups": [
         {
-          "name": "Weekly Specials (Sold by Weight)",
+          "title": "Weekly Specials (Sold by Weight)",
           "items": [
-            {"name": "Price per lb", "price": "10.99/lb", "allergens": "Varies by item; common: Wheat (bread/noodles), Dairy (cheese/sauces), Soy/Egg (some sauces), Pork where noted. Cross-contact possible."},
-            {"name": "Monday", "price": "—", "allergens": "Sausage, Pulled Pork, Corn on the Cob, Spinach, Mashed Potatoes, Broccoli"},
-            {"name": "Tuesday", "price": "—", "allergens": "Baked Chicken, Ground Beef, Broccoli & Cheese, Mac & Cheese, Collards, Green Beans, Tortillas"},
-            {"name": "Wednesday", "price": "—", "allergens": "Noodles, Fried Rice, Chicken, Corn, Greens"},
-            {"name": "Thursday", "price": "—", "allergens": "Rice (Fried/White), Noodles, Curry Chicken or Lamb, Spinach Curry, Bean Curry, Bread"},
-            {"name": "Friday", "price": "—", "allergens": "Chicken Biryani, Green Curry, Mixed Vegetable Curry, Lentil, Bread (Naan/Roti/Tortilla)"},
-            {"name": "Saturday", "price": "—", "allergens": "Sausage or Chicken or Lamb or Pulled Pork, Greens, Corn, Gravy, Tortilla"}
+            { "name": "Price per lb", "price": "$10.99/lb", "allergens": "Allergens vary by item; common: wheat (bread/noodles), dairy (cheese/sauces), soy (some sauces), eggs (dressings), pork (sausage/pulled pork). Cross-contact possible." }
           ],
-          "notes": "Buns served with all meals. Spaghetti always available."
+          "note": "Buns served with all meals. Spaghetti always available."
         },
         {
-          "name": "Pizzas (Two Sizes)",
+          "title": "Weekly Specials (By Day)",
           "items": [
-            {"name": "Cheese", "price": "13.99 / 17.99", "allergens": "Wheat/Gluten, Dairy"},
-            {"name": "Supreme", "price": "13.99 / 17.99", "allergens": "Wheat/Gluten, Dairy; may contain Soy depending on toppings"},
-            {"name": "Pepperoni", "price": "13.99 / 17.99", "allergens": "Wheat/Gluten, Dairy; Pork"},
-            {"name": "Pepperoni & Sausage", "price": "13.99 / 17.99", "allergens": "Wheat/Gluten, Dairy; Pork"},
-            {"name": "Chicken", "price": "13.99 / 17.99", "allergens": "Wheat/Gluten, Dairy; Poultry"}
+            { "name": "Monday", "price": "—", "allergens": "Sausage, Pulled Pork, Corn on the Cob, Spinach, Mashed Potatoes, Broccoli. Buns contain wheat." },
+            { "name": "Tuesday", "price": "—", "allergens": "Baked Chicken, Ground Beef, Broccoli & Cheese, Mac & Cheese, Collards, Green Beans, Tortillas. Common allergens: dairy, wheat, soy." },
+            { "name": "Wednesday", "price": "—", "allergens": "Noodles, Fried Rice, Chicken, Corn, Greens. Common allergens: wheat (noodles), egg/soy (fried rice sauces)." },
+            { "name": "Thursday", "price": "—", "allergens": "Rice (Fried/White), Noodles, Curry Chicken or Lamb, Spinach Curry, Bean Curry, Bread. Common allergens: dairy (some curries), wheat (bread), soy." },
+            { "name": "Friday", "price": "—", "allergens": "Chicken Biryani, Green Curry, Mixed Vegetable Curry, Lentil, Bread (Naan/Roti/Tortilla). Common allergens: dairy (some curries), wheat (breads)." },
+            { "name": "Saturday", "price": "—", "allergens": "Sausage or Chicken or Lamb or Pulled Pork, Greens, Corn, Gravy, Tortilla. Allergens vary; wheat (tortilla), dairy (gravy)." }
           ]
         },
         {
-          "name": "Wings",
+          "title": "Pizzas (Two Sizes)",
           "items": [
-            {"name": "6 pc (Plain/Hot/BBQ/Roasted)", "price": "5.99", "allergens": "Sauces/dips may contain Dairy (ranch/bleu cheese), Egg, Soy; fried—gluten cross-contact possible"},
-            {"name": "10 pc (Plain/Hot/BBQ/Roasted)", "price": "8.99", "allergens": "Sauces/dips may contain Dairy (ranch/bleu cheese), Egg, Soy; fried—gluten cross-contact possible"}
+            { "name": "Cheese", "price": "$13.99 / $17.99", "allergens": "Allergens: wheat/gluten, dairy." },
+            { "name": "Supreme", "price": "$13.99 / $17.99", "allergens": "Allergens: wheat/gluten, dairy; may contain soy depending on toppings." },
+            { "name": "Pepperoni", "price": "$13.99 / $17.99", "allergens": "Allergens: wheat/gluten, dairy; pork." },
+            { "name": "Pepperoni & Sausage", "price": "$13.99 / $17.99", "allergens": "Allergens: wheat/gluten, dairy; pork." },
+            { "name": "Chicken", "price": "$13.99 / $17.99", "allergens": "Allergens: wheat/gluten, dairy; poultry." }
           ]
         },
         {
-          "name": "Subs (6\" / 12\")",
+          "title": "Wings",
           "items": [
-            {"name": "Italiano", "price": "4.99 / 7.99", "allergens": "Wheat/Gluten, Dairy; may contain Egg/Soy in dressings"},
-            {"name": "Steak", "price": "4.99 / 7.99", "allergens": "Wheat/Gluten, Dairy; may contain Soy"},
-            {"name": "Chicken", "price": "4.99 / 7.99", "allergens": "Wheat/Gluten, Dairy; Poultry"},
-            {"name": "Meatball", "price": "4.99 / 7.99", "allergens": "Wheat/Gluten, Dairy; Meatballs may contain Egg/Soy"},
-            {"name": "Ham & Cheese", "price": "4.99 / 7.99", "allergens": "Wheat/Gluten, Dairy"}
+            { "name": "6 pc (Plain/Hot/BBQ/Roasted)", "price": "$5.99", "allergens": "Allergens: sauces/dips may contain dairy (ranch/bleu cheese), egg, soy; fried—gluten cross-contact possible." },
+            { "name": "10 pc (Plain/Hot/BBQ/Roasted)", "price": "$8.99", "allergens": "Allergens: sauces/dips may contain dairy (ranch/bleu cheese), egg, soy; fried—gluten cross-contact possible." }
           ]
         },
         {
-          "name": "Sides",
+          "title": "Subs (6\" / 12\")",
           "items": [
-            {"name": "Cheese Bread", "price": "5.99", "allergens": "Dairy; Wheat if crusted"},
-            {"name": "French Fries", "price": "3.29", "allergens": "Shared fryer (possible gluten cross-contact)"},
-            {"name": "Potato Wedges", "price": "2.99", "allergens": "Shared fryer; may contain Wheat if breaded"},
-            {"name": "French Fries w/ Cheese & Chili", "price": "7.99", "allergens": "Dairy (cheese), Wheat/Soy possible in chili; fried cross-contact"},
-            {"name": "Garden Salad (Sm/Lg)", "price": "5.99 / 8.99", "allergens": "Dairy/Egg/Soy depend on dressing"},
-            {"name": "Chicken Salad (Sm/Lg)", "price": "5.99 / 8.99", "allergens": "Dairy/Egg/Soy depend on dressing; Poultry"}
+            { "name": "Italiano", "price": "$4.99 / $7.99", "allergens": "Allergens: wheat/gluten, dairy; may contain egg/soy in dressings." },
+            { "name": "Steak", "price": "$4.99 / $7.99", "allergens": "Allergens: wheat/gluten, dairy; may contain soy." },
+            { "name": "Chicken", "price": "$4.99 / $7.99", "allergens": "Allergens: wheat/gluten, dairy; poultry." },
+            { "name": "Meatball", "price": "$4.99 / $7.99", "allergens": "Allergens: wheat/gluten, dairy; pork/beef in meatballs; may contain egg/soy." },
+            { "name": "Ham & Cheese", "price": "$4.99 / $7.99", "allergens": "Allergens: wheat/gluten, dairy." }
           ]
         },
         {
-          "name": "Desserts",
+          "title": "Sides",
           "items": [
-            {"name": "Cheesecake", "price": "5.99", "allergens": "Dairy, Egg; crust usually Wheat"},
-            {"name": "Ice Cream Cup", "price": "3.99", "allergens": "Dairy"}
+            { "name": "Cheese Bread", "price": "$5.99", "allergens": "Allergens: dairy; wheat if crusted." },
+            { "name": "French Fries", "price": "$3.29", "allergens": "Allergens: cooked in shared fryer (possible gluten cross-contact)." },
+            { "name": "Potato Wedges", "price": "$2.99", "allergens": "Allergens: cooked in shared fryer; may contain wheat if breaded." },
+            { "name": "French Fries w/ Cheese & Chili", "price": "$7.99", "allergens": "Allergens: dairy (cheese), wheat/soy possible in chili; fried cross-contact." },
+            { "name": "Garden Salad (Sm/Lg)", "price": "$5.99 / $8.99", "allergens": "Allergens: dairy/egg/soy depend on dressing; ask if needed." },
+            { "name": "Chicken Salad (Sm/Lg)", "price": "$5.99 / $8.99", "allergens": "Allergens: dairy/egg/soy depend on dressing; poultry." }
           ]
         },
         {
-          "name": "Sauces & Extras (each)",
+          "title": "Desserts",
           "items": [
-            {"name": "Ranch Cup", "price": "0.79", "allergens": "Dairy, Egg"},
-            {"name": "Pizza Sauce Cup", "price": "0.79", "allergens": "Usually none; check label"},
-            {"name": "Garlic Cup", "price": "0.79", "allergens": "Usually none; check label"},
-            {"name": "Bleu Cheese Cup", "price": "0.79", "allergens": "Dairy, Egg"},
-            {"name": "Banana Pepper Cup", "price": "0.79", "allergens": "Usually none"},
-            {"name": "Jalapeño Cup", "price": "0.79", "allergens": "Usually none"},
-            {"name": "Hot Sauce Cup", "price": "0.79", "allergens": "Usually none; some brands contain Soy"},
-            {"name": "Jalapeño Ranch Cup", "price": "0.79", "allergens": "Dairy, Egg"},
-            {"name": "Sweet Chili Pepper Cup", "price": "0.79", "allergens": "Usually none; check label"}
+            { "name": "Cheesecake", "price": "$5.99", "allergens": "Allergens: dairy, egg; crust usually wheat." },
+            { "name": "Ice Cream Cup", "price": "$3.99", "allergens": "Allergens: dairy." }
           ]
         },
         {
-          "name": "Other Items",
+          "title": "Sauces & Extras (each)",
           "items": [
-            {"name": "Spaghetti (Sm/Lg)", "price": "2.99 / 4.99", "allergens": "Wheat/Gluten; Dairy if topped with cheese"},
-            {"name": "Buns", "price": "0.99", "allergens": "Wheat; may contain Sesame"}
+            { "name": "Ranch Cup", "price": "$0.79", "allergens": "Allergens: dairy, egg." },
+            { "name": "Pizza Sauce Cup", "price": "$0.79", "allergens": "Allergens: usually none; check label." },
+            { "name": "Garlic Cup", "price": "$0.79", "allergens": "Allergens: usually none; check label." },
+            { "name": "Bleu Cheese Cup", "price": "$0.79", "allergens": "Allergens: dairy, egg." },
+            { "name": "Banana Pepper Cup", "price": "$0.79", "allergens": "Allergens: usually none." },
+            { "name": "Jalapeño Cup", "price": "$0.79", "allergens": "Allergens: usually none." },
+            { "name": "Hot Sauce Cup", "price": "$0.79", "allergens": "Allergens: usually none; may contain soy depending on brand." },
+            { "name": "Jalapeño Ranch Cup", "price": "$0.79", "allergens": "Allergens: dairy, egg." },
+            { "name": "Sweet Chili Pepper Cup", "price": "$0.79", "allergens": "Allergens: usually none; check label." }
+          ]
+        },
+        {
+          "title": "Other Items",
+          "items": [
+            { "name": "Spaghetti (Sm/Lg)", "price": "$2.99 / $4.99", "allergens": "Allergens: wheat/gluten (pasta), dairy if topped with cheese." },
+            { "name": "Buns", "price": "$0.99", "allergens": "Allergens: wheat; may contain sesame." }
           ]
         }
       ]
