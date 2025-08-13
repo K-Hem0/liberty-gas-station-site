@@ -271,3 +271,31 @@ header { z-index: 4000 !important; }
 
 /* (Optional) lower Leaflet's own stacking context just a bit */
 .leaflet-container { z-index: 0; }
+
+/* Keep sticky header above EVERYTHING */
+header.site-header,
+header { 
+  position: sticky;            /* you already have this */
+  top: 0;
+  z-index: 99999;              /* crank it way up */
+  isolation: isolate;          /* new stacking context so it wins */
+}
+
+/* Make sure the map sits below header in stacking order */
+.map-card, .map-frame, #map, .leaflet-container { 
+  position: relative; 
+  z-index: 0;
+  overflow: hidden;            /* clips any stray tiles/controls */
+  border-radius: 10px;         /* keeps controls clipped to the card */
+}
+
+/* Leaflet puts controls at z-index:1000 — lower them */
+.leaflet-top, .leaflet-bottom,
+.leaflet-control-container {
+  z-index: 100 !important;
+}
+
+/* Popups/markers still above tiles but below header */
+.leaflet-pane.leaflet-popup-pane   { z-index: 500 !important; }
+.leaflet-pane.leaflet-marker-pane  { z-index: 450 !important; }
+.leaflet-pane.leaflet-overlay-pane { z-index: 400 !important; }
