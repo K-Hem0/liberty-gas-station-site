@@ -519,7 +519,20 @@ highlightToday();
     console.warn('Falling back to static HTML menu/hours:', err);
   }
 })();
+// after: var map = L.map('map', {scrollWheelZoom: true});
+function refreshLeaflet() { try { map.invalidateSize(); } catch(_) {} }
 
+// Recalculate on viewport changes (mobile URL bar show/hide, rotation)
+window.addEventListener('resize', () => setTimeout(refreshLeaflet, 150));
+window.addEventListener('orientationchange', () => setTimeout(refreshLeaflet, 150));
+
+// Also when the map first scrolls into view (helps on initial load)
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) setTimeout(refreshLeaflet, 150); });
+  }, { threshold: 0.1 });
+  io.observe(document.getElementById('map'));
+}
   </script>
 </body>
 </html>
