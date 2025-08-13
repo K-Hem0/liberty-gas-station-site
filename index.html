@@ -388,5 +388,48 @@
       .catch(function(){ /* keep fallback */ });
     })();
   </script>
+  <script>
+fetch('menu.json')
+  .then(response => response.json())
+  .then(menu => {
+    const container = document.getElementById('menu-container');
+    container.innerHTML = '';
+
+    menu.sections.forEach(section => {
+      const sectionEl = document.createElement('div');
+      sectionEl.classList.add('menu-section');
+
+      const heading = document.createElement('h2');
+      heading.textContent = section.name;
+      sectionEl.appendChild(heading);
+
+      section.items.forEach(item => {
+        const itemEl = document.createElement('div');
+        itemEl.classList.add('menu-item');
+
+        const name = document.createElement('span');
+        name.textContent = item.name;
+
+        const price = document.createElement('span');
+        price.textContent = `$${item.price.toFixed(2)}`;
+
+        itemEl.appendChild(name);
+        itemEl.appendChild(price);
+
+        // Modal for allergen info
+        itemEl.addEventListener('click', () => {
+          alert(`Allergens: ${item.allergens.join(', ') || 'None listed'}`);
+        });
+
+        sectionEl.appendChild(itemEl);
+      });
+
+      container.appendChild(sectionEl);
+    });
+  })
+  .catch(err => console.error('Error loading menu:', err));
+</script>
+</body>
+</html>
 </body>
 </html>
