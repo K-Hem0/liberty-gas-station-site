@@ -122,16 +122,14 @@ img {
   border: 1px solid #e7e3dc;
 }
 
-.menu-section h3 {
-  margin-top: 0;
-  font-family: 'Merriweather', serif;
-  color: var(--red);
+.menu-section {
+  margin-bottom: 2rem;
 }
 
 .items {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .items li {
@@ -139,8 +137,8 @@ img {
   justify-content: space-between;
   padding: 6px 0;
   border-bottom: 1px dashed #ccc;
-  font-size: 0.95rem;
 }
+
 
 .items li:last-child {
   border-bottom: none;
