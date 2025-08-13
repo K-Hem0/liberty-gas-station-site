@@ -366,8 +366,6 @@ function highlightToday(){
 }
 // initial highlight for the static HTML (renderer will call again after it rewrites hours)
 highlightToday();
-
-
     // Interactive map (Leaflet + OSM)
     (function() {
       var fallbackLat = 38.4047, fallbackLng = -78.6239, fallbackZoom = 15;
@@ -404,6 +402,113 @@ highlightToday();
       })
       .catch(function(){ /* keep fallback */ });
     })();
+    /* === JSON renderer: reads menu.json and renders Hours + Menu === */
+(async function () {
+  try {
+    const res = await fetch('menu.json', { headers: { 'Accept': 'application/json' } });
+    if (!res.ok) throw new Error('menu.json not found');
+    const data = await res.json();
+
+    // ---- Hours ----
+    function renderHours(hours) {
+      const ul = document.querySelector('.hours-list');
+      if (!ul || !hours) return;
+      const order = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+      ul.innerHTML = '';
+      order.forEach(d => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="hours-day">${d}</span><span class="hours-time">${hours[d] || ''}</span>`;
+        ul.appendChild(li);
+      });
+      // re-apply highlighting after rewriting the list
+      if (typeof highlightToday === 'function') highlightToday();
+    }
+
+    // ---- Menu ----
+    function makeRow(item) {
+      const tr = document.createElement('tr');
+
+      const nameTd = document.createElement('td');
+      nameTd.className = 'item-name';
+      const a = document.createElement('a');
+      a.href = '#';
+      a.textContent = item.name;
+      if (item.allergens) a.setAttribute('data-info', item.allergens);
+      nameTd.appendChild(a);
+
+      const priceTd = document.createElement('td');
+      priceTd.className = 'price';
+      priceTd.textContent = (item.price ?? '—');
+
+      tr.append(nameTd, priceTd);
+      return tr;
+    }
+
+    function renderMenu(menuSections) {
+      const sec = document.getElementById('menu');
+      if (!sec || !Array.isArray(menuSections)) return;
+
+      // Replace whatever is there with JSON-driven content
+      sec.innerHTML = '';
+
+      menuSections.forEach(section => {
+        const h2 = document.createElement('h2');
+        h2.className = 'menu-title';
+        h2.style.color = '#0e7c86';
+        h2.style.fontFamily = "'Merriweather',serif";
+        h2.textContent = section.section || '';
+        sec.appendChild(h2);
+
+        (section.groups || []).forEach(group => {
+          const block = document.createElement('div');
+          block.className = 'menu-block';
+
+          const title = document.createElement('h4');
+          title.textContent = group.title || '';
+          block.appendChild(title);
+
+          const wrap = document.createElement('div');
+          wrap.className = 'table-wrap';
+
+          const table = document.createElement('table');
+          table.className = 'menu-table';
+
+          const tbody = document.createElement('tbody');
+          (group.items || []).forEach(item => tbody.appendChild(makeRow(item)));
+
+          table.appendChild(tbody);
+          wrap.appendChild(table);
+          block.appendChild(wrap);
+
+          if (group.note) {
+            const p = document.createElement('p');
+            p.className = 'note';
+            p.textContent = group.note;
+            block.appendChild(p);
+          }
+
+          sec.appendChild(block);
+        });
+      });
+
+      // Bind allergy modal to the new links
+      document.querySelectorAll('.menu-table .item-name a').forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          openModal(link.getAttribute('data-info'));
+        });
+      });
+    }
+
+    // Render from JSON
+    if (data.business && data.business.hours) renderHours(data.business.hours);
+    if (data.menu) renderMenu(data.menu);
+
+  } catch (err) {
+    console.warn('Falling back to static HTML menu/hours:', err);
+  }
+})();
+
   </script>
 </body>
 </html>
