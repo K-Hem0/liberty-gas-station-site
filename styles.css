@@ -167,7 +167,7 @@ table.menu-table {
 .btn-primary{ background:#0e7c86; color:#fff; }
 .btn-muted  { background:#eef2f3; color:#1f2a37; }
 
-/* ===== Generic layout helpers (optional but nice) ===== */
+/* ===== Generic layout helpers ===== */
 .container { width: 92%; max-width: 1150px; margin: 0 auto; }
 .header-inner{ display:flex; justify-content:space-between; align-items:center; }
 .logo { margin:0; color:#c93b2b; font-weight:700; }
@@ -185,11 +185,33 @@ table.menu-table {
   .grid{ grid-template-columns: 1fr; }
 }
 
-/* Hours sidebar */
+/* Sidebar & cards */
 .card{ background:#fff; border:1px solid #e6e6e6; border-radius:12px; padding:16px; }
 .card h3{ margin:0 0 8px 0; color:#0e7c86; font-weight:700; }
 
-.hours-card .today{display:inline-block; background:#d9f0df; color:#1f7a3a; font-weight:600; border-radius:6px; padding:4px 8px; margin-bottom:10px}
+/* Call card button (matches original style) */
+.call-card .phone{
+  display:block;
+  text-align:center;
+  background:#c93b2b;   /* diner red */
+  color:#fff;
+  padding:12px 14px;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+}
+.call-card .phone:hover{ opacity:.92; text-decoration:none; }
+
+/* Hours card */
+.hours-card .today{
+  display:inline-block;
+  background:#d9f0df;
+  color:#1f7a3a;
+  font-weight:600;
+  border-radius:6px;
+  padding:4px 8px;
+  margin-bottom:10px
+}
 .hours-list{list-style:none; margin:0; padding:0; border-top:1px solid #e6e6e6}
 .hours-list li{display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid #e6e6e6}
 .hours-day{font-weight:600}
@@ -203,19 +225,5 @@ table.menu-table {
 /* Footer */
 footer{ border-top:1px solid #e6e6e6; padding:18px 0; color:#6b7280; text-align:center }
 
-/* Call card button — matches the red style in your screenshot */
-.call-card .phone{
-  display:block;
-  text-align:center;
-  background:#c93b2b;   /* diner red */
-  color:#fff;
-  padding:12px 14px;
-  border-radius:10px;
-  font-weight:700;
-  text-decoration:none;
-}
-.call-card .phone:hover{ opacity:.92; text-decoration:none; }
-
-/* Make sure sidebar is not sticky (scrolls with page) */
+/* Sidebar scroll behavior */
 .sidebar{ position:static; }
-
