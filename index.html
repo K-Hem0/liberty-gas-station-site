@@ -22,12 +22,14 @@
       --bg:#ffffff;
       --card:#f9f9f9;
       --rule:#e6e6e6;
+      --muted:#6b7280;
+      --success:#d9f0df;
     }
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Poppins',system-ui,sans-serif;line-height:1.6}
     a{color:var(--teal);text-decoration:none}
     a:hover{text-decoration:underline}
-    .container{width:90%;max-width:1000px;margin:0 auto}
+    .container{width:92%;max-width:1150px;margin:0 auto}
 
     /* Header */
     header{border-bottom:4px solid var(--teal);padding:14px 0;background:var(--bg);position:sticky;top:0;z-index:10}
@@ -45,28 +47,54 @@
     }
     .hero h2{color:#fff;margin:0;font-family:'Merriweather',serif;font-size:28px;letter-spacing:.3px;text-shadow:0 2px 8px rgba(0,0,0,.45)}
 
-    /* Info cards */
-    .info{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:22px auto}
-    .card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:16px}
-    .card h3{margin:0 0 6px 0;font-family:'Merriweather',serif;color:var(--teal)}
-    .map{font-weight:600}
+    /* Main layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr; /* content | sidebar */
+      gap:22px;
+      margin:22px auto 40px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr}
+      .sidebar{position:static}
+    }
+
+    /* Cards & sidebar */
+    .card{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:16px}
+    .card h3{margin:0 0 8px 0;font-family:'Merriweather',serif;color:var(--teal)}
+    .sidebar{position:sticky; top:90px; align-self:start}
+    .call-card .phone{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      background:var(--red);color:#fff;border-radius:10px;padding:12px 14px;font-weight:700
+    }
+    .call-card .phone:hover{opacity:.92}
+    .hours-card .today{display:inline-block;background:var(--success);color:#1f7a3a;font-weight:600;border-radius:6px;padding:4px 8px;margin-bottom:10px}
+    .hours-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+    .hours-list li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule)}
+    .hours-day{font-weight:600}
+    .hours-time{color:#111}
+
+    /* Info row */
+    .info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:0 0 22px 0}
 
     /* Menu */
-    .menu{margin:8px auto 48px}
-    .menu-title{text-align:center;font-family:'Merriweather',serif;color:var(--teal);font-size:34px;margin:6px 0 18px}
-    .menu-section{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:16px;margin-bottom:22px}
-    .menu-section h3{margin:0 0 10px;color:var(--red);font-family:'Merriweather',serif}
-    .items{list-style:none;margin:0;padding:0}
-    .items li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed #cfcfcf}
-    .items li:last-child{border-bottom:none}
-    .price{white-space:nowrap;color:#222}
+    .menu-title{text-align:left;font-family:'Merriweather',serif;color:var(--teal);font-size:30px;margin:0 0 10px}
+    .menu-block{margin-bottom:22px}
+    .menu-block h4{margin:.2rem 0 .6rem 0;color:var(--red);font-family:'Merriweather',serif}
+    table.menu-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+    .menu-table th{background:#fff;color:#222;text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);font-weight:600}
+    .menu-table td{padding:10px 12px;border-bottom:1px dashed #d5d5d5;vertical-align:top}
+    .menu-table tr:last-child td{border-bottom:none}
+    .item-name a{color:var(--teal);text-decoration:none}
+    .item-name a:hover{text-decoration:underline}
+    .price{white-space:nowrap;text-align:right}
 
-    .note{text-align:center;color:#6b7280;font-size:.92rem;margin-top:10px}
+    .note{color:var(--muted);font-size:.92rem;margin-top:8px}
 
     /* Footer */
-    footer{border-top:1px solid var(--rule);padding:18px 0;color:#6b7280;text-align:center}
+    footer{border-top:1px solid var(--rule);padding:18px 0;color:var(--muted);text-align:center}
 
-    /* Modal (with fade) */
+    /* Modal (fade) */
     #nutritionModal{
       opacity:0; visibility:hidden; transition:opacity .25s ease, visibility .25s ease;
       position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:1000; display:flex; align-items:center; justify-content:center; padding:18px
@@ -78,18 +106,17 @@
     }
     .modal-content h4{margin:0 0 8px;font-family:'Merriweather',serif;color:var(--teal)}
     .modal-close{position:absolute; right:10px; top:8px; font-size:26px; line-height:1; cursor:pointer; color:var(--red)}
-    @media (max-width:900px){.logo{font-size:28px}}
   </style>
 </head>
 <body>
   <header>
     <div class="container header-inner">
       <h1 class="logo">Liberty Gas Station</h1>
-      <a class="cta" href="tel:" aria-label="Call to order">Call to Order</a>
+      <a class="cta" href="tel:+15402980340" aria-label="Call (540) 298-0340">Call (540) 298-0340</a>
     </div>
   </header>
 
-  <!-- High quality diner hero image -->
+  <!-- High-quality diner hero image -->
   <section class="hero">
     <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1600&auto=format&fit=crop" alt="Classic diner burger and fries" />
     <div class="overlay">
@@ -97,87 +124,189 @@
     </div>
   </section>
 
-  <main class="container">
-    <!-- Info -->
-    <section class="info" id="info">
-      <div class="card">
-        <h3>Hours</h3>
-        <ul style="margin:0;padding-left:18px">
-          <li>Mon – Fri: 5:00a – 8:00p</li>
-          <li>Sat – Sun: 6:00a – 10:00a</li>
+  <main class="container grid">
+    <!-- LEFT: content -->
+    <div>
+      <!-- Quick info cards -->
+      <section class="info">
+        <div class="card">
+          <h3>Address</h3>
+          <p style="margin:.25rem 0 0">607 7th St<br/>Elkton, VA 22827</p>
+          <p style="margin:.25rem 0 0"><a class="map" href="https://maps.google.com/?q=607+7th+St+Elkton+VA+22827" target="_blank" rel="noopener">Open in Maps</a></p>
+        </div>
+        <div class="card">
+          <h3>Call</h3>
+          <p style="margin:.25rem 0 0"><a class="cta" href="tel:+15402980340">(540) 298-0340</a></p>
+        </div>
+      </section>
+
+      <!-- MENU -->
+      <section id="menu">
+        <h2 class="menu-title">Breakfast</h2>
+
+        <!-- Pancakes -->
+        <div class="menu-block">
+          <h4>Pancakes</h4>
+          <table class="menu-table">
+            <tbody>
+              <tr>
+                <td class="item-name"><a href="#" data-info="">1 Pan Cake</a></td>
+                <td class="price">$1.99</td>
+              </tr>
+              <tr>
+                <td class="item-name"><a href="#" data-info="">2 Pan Cakes</a></td>
+                <td class="price">$3.99</td>
+              </tr>
+              <tr>
+                <td class="item-name"><a href="#" data-info="">3 Pan Cakes (with Hash Browns &amp; Sausage/Bacon)</a></td>
+                <td class="price">$6.99</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Breakfast Pizza -->
+        <div class="menu-block">
+          <h4>Breakfast Pizza (Slice)</h4>
+          <table class="menu-table">
+            <tbody>
+              <tr>
+                <td class="item-name"><a href="#" data-info="">Sausage</a></td>
+                <td class="price">$2.99</td>
+              </tr>
+              <tr>
+                <td class="item-name"><a href="#" data-info="">Sausage, Bacon, Egg</a></td>
+                <td class="price">$3.49</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Biscuits -->
+        <div class="menu-block">
+          <h4>Biscuits</h4>
+          <table class="menu-table">
+            <tbody>
+              <tr><td class="item-name"><a href="#" data-info="">Sausage Biscuit</a></td><td class="price">$0.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Bacon Biscuit</a></td><td class="price">$0.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Sausage &amp; Egg Biscuit</a></td><td class="price">$0.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Bacon &amp; Egg Biscuit</a></td><td class="price">$0.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Sausage, Egg &amp; Cheese Biscuit</a></td><td class="price">$0.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Bacon, Egg &amp; Cheese Biscuit</a></td><td class="price">$0.99</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Breakfast Sides -->
+        <div class="menu-block">
+          <h4>Breakfast Sides</h4>
+          <table class="menu-table">
+            <tbody>
+              <tr><td class="item-name"><a href="#" data-info="">Hash Browns</a></td><td class="price">$2.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Mozzarella Stick</a></td><td class="price">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- LUNCH -->
+        <h2 class="menu-title" style="margin-top:28px">Lunch</h2>
+
+        <!-- Pizzas -->
+        <div class="menu-block">
+          <h4>Pizzas</h4>
+          <table class="menu-table">
+            <thead><tr><th>Size &amp; Toppings</th><th class="price">Price</th></tr></thead>
+            <tbody>
+              <tr><td class="item-name"><a href="#" data-info="">Small Cheese</a></td><td class="price">$7.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Small 1 Topping</a></td><td class="price">$8.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Small 2 Topping</a></td><td class="price">$9.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Small 3 Topping</a></td><td class="price">$10.99</td></tr>
+
+              <tr><td class="item-name"><a href="#" data-info="">Medium Cheese</a></td><td class="price">$10.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Medium 1 Topping</a></td><td class="price">$11.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Medium 2 Topping</a></td><td class="price">$12.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Medium 3 Topping</a></td><td class="price">$13.99</td></tr>
+
+              <tr><td class="item-name"><a href="#" data-info="">Large Cheese</a></td><td class="price">$12.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Large 1 Topping</a></td><td class="price">$13.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Large 2 Topping</a></td><td class="price">$14.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Large 3 Topping</a></td><td class="price">$15.99</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Subs -->
+        <div class="menu-block">
+          <h4>Subs</h4>
+          <table class="menu-table">
+            <tbody>
+              <tr><td class="item-name"><a href="#" data-info="">Ham &amp; Cheese</a></td><td class="price">$5.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Steak &amp; Cheese</a></td><td class="price">$6.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Meatball</a></td><td class="price">$6.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Turkey &amp; Cheese</a></td><td class="price">$5.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Chicken Parmesan</a></td><td class="price">$6.99</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pasta & Salads -->
+        <div class="menu-block">
+          <h4>Pasta &amp; Salads</h4>
+          <table class="menu-table">
+            <tbody>
+              <tr><td class="item-name"><a href="#" data-info="">Spaghetti</a></td><td class="price">$5.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Spaghetti with Meatballs</a></td><td class="price">$6.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Macaroni &amp; Cheese</a></td><td class="price">$4.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Chef Salad</a></td><td class="price">$5.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Garden Salad</a></td><td class="price">$4.99</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Snacks & Drinks -->
+        <div class="menu-block">
+          <h4>Snacks &amp; Drinks</h4>
+          <table class="menu-table">
+            <tbody>
+              <tr><td class="item-name"><a href="#" data-info="">Regular Chips</a></td><td class="price">$0.75</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Specialty Chips</a></td><td class="price">$1.29</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Bottled Water</a></td><td class="price">$0.99</td></tr>
+              <tr><td class="item-name"><a href="#" data-info="">Fountain Drink</a></td><td class="price">$1.49</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="note">Prices subject to change. Please inform us of any allergies.</p>
+      </section>
+    </div>
+
+    <!-- RIGHT: sidebar -->
+    <aside class="sidebar">
+      <div class="card call-card" style="margin-bottom:16px">
+        <h3>Call</h3>
+        <a class="phone" href="tel:+15402980340" aria-label="Call (540) 298-0340">📞 (540) 298-0340</a>
+      </div>
+
+      <div class="card hours-card">
+        <div class="today">Open today:</div>
+        <h3 style="margin-top:6px">Opening Hours</h3>
+        <!-- Edit times here if needed -->
+        <ul class="hours-list">
+          <li><span class="hours-day">Monday</span><span class="hours-time">5 AM–10 PM</span></li>
+          <li><span class="hours-day">Tuesday</span><span class="hours-time">5 AM–10 PM</span></li>
+          <li><span class="hours-day">Wednesday</span><span class="hours-time">5 AM–10 PM</span></li>
+          <li><span class="hours-day">Thursday</span><span class="hours-time">5 AM–10 PM</span></li>
+          <li><span class="hours-day">Friday</span><span class="hours-time">5 AM–10 PM</span></li>
+          <li><span class="hours-day">Saturday</span><span class="hours-time">6 AM–10 PM</span></li>
+          <li><span class="hours-day">Sunday</span><span class="hours-time">6 AM–10 PM</span></li>
         </ul>
       </div>
-      <div class="card">
-        <h3>Location</h3>
-        <p style="margin:.25rem 0 0">607 7th St<br/>Elkton, VA 22827</p>
-        <p style="margin:.25rem 0 0"><a class="map" href="https://maps.google.com/?q=607+7th+St+Elkton+VA+22827" target="_blank" rel="noopener">Open in Maps</a></p>
-      </div>
-    </section>
-
-    <!-- Menu -->
-    <section class="menu" id="menu">
-      <h2 class="menu-title">Menu</h2>
-
-      <!-- Breakfast -->
-      <div class="menu-section">
-        <h3>Breakfast</h3>
-        <ul class="items">
-          <li><a href="#" data-info="">1 Pan Cake</a><span class="price">$1.99</span></li>
-          <li><a href="#" data-info="">2 Pan Cakes</a><span class="price">$3.99</span></li>
-          <li><a href="#" data-info="">3 Pan Cakes (with Hash Browns &amp; Sausage/Bacon)</a><span class="price">$6.99</span></li>
-          <li><a href="#" data-info="">Hash Browns</a><span class="price">$2.99</span></li>
-          <li><a href="#" data-info="">Mozzarella Stick</a><span class="price">—</span></li>
-          <li><a href="#" data-info="">Breakfast Pizza (Sausage Slice)</a><span class="price">$2.99</span></li>
-          <li><a href="#" data-info="">Breakfast Pizza (Sausage, Bacon, Egg Slice)</a><span class="price">$3.49</span></li>
-          <li><a href="#" data-info="">Sausage Biscuit</a><span class="price">$0.99</span></li>
-          <li><a href="#" data-info="">Bacon Biscuit</a><span class="price">$0.99</span></li>
-          <li><a href="#" data-info="">Sausage &amp; Egg Biscuit</a><span class="price">$0.99</span></li>
-          <li><a href="#" data-info="">Bacon &amp; Egg Biscuit</a><span class="price">$0.99</span></li>
-          <li><a href="#" data-info="">Sausage, Egg &amp; Cheese Biscuit</a><span class="price">$0.99</span></li>
-          <li><a href="#" data-info="">Bacon, Egg &amp; Cheese Biscuit</a><span class="price">$0.99</span></li>
-        </ul>
-      </div>
-
-      <!-- Lunch -->
-      <div class="menu-section">
-        <h3>Lunch</h3>
-        <ul class="items">
-          <li><a href="#" data-info="">Small Cheese Pizza</a><span class="price">$7.99</span></li>
-          <li><a href="#" data-info="">Small 1 Topping Pizza</a><span class="price">$8.99</span></li>
-          <li><a href="#" data-info="">Small 2 Topping Pizza</a><span class="price">$9.99</span></li>
-          <li><a href="#" data-info="">Small 3 Topping Pizza</a><span class="price">$10.99</span></li>
-          <li><a href="#" data-info="">Medium Cheese Pizza</a><span class="price">$10.99</span></li>
-          <li><a href="#" data-info="">Medium 1 Topping Pizza</a><span class="price">$11.99</span></li>
-          <li><a href="#" data-info="">Medium 2 Topping Pizza</a><span class="price">$12.99</span></li>
-          <li><a href="#" data-info="">Medium 3 Topping Pizza</a><span class="price">$13.99</span></li>
-          <li><a href="#" data-info="">Large Cheese Pizza</a><span class="price">$12.99</span></li>
-          <li><a href="#" data-info="">Large 1 Topping Pizza</a><span class="price">$13.99</span></li>
-          <li><a href="#" data-info="">Large 2 Topping Pizza</a><span class="price">$14.99</span></li>
-          <li><a href="#" data-info="">Large 3 Topping Pizza</a><span class="price">$15.99</span></li>
-          <li><a href="#" data-info="">Ham &amp; Cheese Sub</a><span class="price">$5.99</span></li>
-          <li><a href="#" data-info="">Steak &amp; Cheese Sub</a><span class="price">$6.99</span></li>
-          <li><a href="#" data-info="">Meatball Sub</a><span class="price">$6.99</span></li>
-          <li><a href="#" data-info="">Turkey &amp; Cheese Sub</a><span class="price">$5.99</span></li>
-          <li><a href="#" data-info="">Chicken Parmesan Sub</a><span class="price">$6.99</span></li>
-          <li><a href="#" data-info="">Spaghetti</a><span class="price">$5.99</span></li>
-          <li><a href="#" data-info="">Spaghetti with Meatballs</a><span class="price">$6.99</span></li>
-          <li><a href="#" data-info="">Macaroni &amp; Cheese</a><span class="price">$4.99</span></li>
-          <li><a href="#" data-info="">Chef Salad</a><span class="price">$5.99</span></li>
-          <li><a href="#" data-info="">Garden Salad</a><span class="price">$4.99</span></li>
-          <li><a href="#" data-info="">Regular Chips</a><span class="price">$0.75</span></li>
-          <li><a href="#" data-info="">Specialty Chips</a><span class="price">$1.29</span></li>
-          <li><a href="#" data-info="">Bottled Water</a><span class="price">$0.99</span></li>
-          <li><a href="#" data-info="">Fountain Drink</a><span class="price">$1.49</span></li>
-        </ul>
-      </div>
-
-      <p class="note">Prices subject to change. Please inform us of any allergies.</p>
-    </section>
+    </aside>
   </main>
 
   <footer>
     <div class="container">
-      <p>© <span id="year"></span> Liberty Gas Station · <a href="tel:" style="color:var(--teal)">Call</a></p>
+      <p>© <span id="year"></span> Liberty Gas Station · <a href="tel:+15402980340" style="color:var(--teal)">Call (540) 298-0340</a></p>
     </div>
   </footer>
 
@@ -190,31 +319,48 @@
     </div>
   </div>
 
-  <script>
-    // Year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  // Year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Modal logic with fade
-    const modal = document.getElementById('nutritionModal');
-    const modalText = document.getElementById('nutritionText');
-    const closeBtn = document.querySelector('.modal-close');
+  // Modal logic with fade
+  const modal = document.getElementById('nutritionModal');
+  const modalText = document.getElementById('nutritionText');
+  const closeBtn = document.querySelector('.modal-close');
 
-    document.querySelectorAll('.items a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        modalText.textContent = link.getAttribute('data-info') || 'No information available.';
-        modal.classList.add('show');
-        modal.setAttribute('aria-hidden','false');
-      });
+  document.querySelectorAll('.item-name a, .menu-table .item-name a, .menu-table a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      modalText.textContent = link.getAttribute('data-info') || 'No information available.';
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden','false');
     });
+  });
 
-    function closeModal(){
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden','true');
+  function closeModal(){
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+  }
+  closeBtn.addEventListener('click', closeModal);
+  window.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+  window.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+  // ===== Auto-highlight current day in hours list =====
+  const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const todayIndex = new Date().getDay();
+  const hoursListItems = document.querySelectorAll('.hours-list li');
+
+  hoursListItems.forEach(li => {
+    const dayName = li.querySelector('.hours-day').textContent.trim();
+    if(dayName === days[todayIndex]){
+      li.style.background = '#d9f0df';   // same green highlight
+      li.style.borderRadius = '6px';
+      li.style.fontWeight = '600';
+      // Also update the "Open today" badge to show current day
+      const todayBadge = document.querySelector('.hours-card .today');
+      todayBadge.textContent = `Open today: ${dayName}`;
     }
-    closeBtn.addEventListener('click', closeModal);
-    window.addEventListener('click', e => { if(e.target === modal) closeModal(); });
-    window.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
-  </script>
+  });
+</script>
 </body>
 </html>
