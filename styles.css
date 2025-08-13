@@ -165,9 +165,24 @@ table.menu-table {
 }
 
 /* Buttons for the details column */
-.map-cta-row{
-  display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;
+/* Bigger Get Directions button to fill space */
+.map-cta-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
+
+.map-cta-row .btn {
+  flex: 1;
+}
+
+.big-btn {
+  font-size: 1.1rem;
+  padding: 14px 20px;
+  text-align: center;
+}
+
 
 .btn{
   display:inline-block; padding:10px 12px; border-radius:8px;
