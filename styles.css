@@ -241,3 +241,18 @@ footer{ border-top:1px solid #e6e6e6; padding:18px 0; color:#6b7280; text-align:
     height: fit-content;
   }
 }
+/* DoorDash button card */
+.order-card .dd-link{
+  display:block;
+  text-align:center;
+  background:#ff3008;           /* DoorDash red */
+  color:#fff;
+  padding:12px 14px;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+}
+.order-card .dd-link:hover{
+  opacity:.92;
+  text-decoration:none;
+}
