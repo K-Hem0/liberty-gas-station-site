@@ -202,3 +202,20 @@ table.menu-table {
 
 /* Footer */
 footer{ border-top:1px solid #e6e6e6; padding:18px 0; color:#6b7280; text-align:center }
+
+/* Call card button — matches the red style in your screenshot */
+.call-card .phone{
+  display:block;
+  text-align:center;
+  background:#c93b2b;   /* diner red */
+  color:#fff;
+  padding:12px 14px;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+}
+.call-card .phone:hover{ opacity:.92; text-decoration:none; }
+
+/* Make sure sidebar is not sticky (scrolls with page) */
+.sidebar{ position:static; }
+
