@@ -266,3 +266,8 @@ footer{ border-top:1px solid #e6e6e6; padding:18px 0; color:#6b7280; text-align:
   opacity:.92;
   text-decoration:none;
 }
+/* Keep sticky header above Leaflet controls */
+header { z-index: 4000 !important; }
+
+/* (Optional) lower Leaflet's own stacking context just a bit */
+.leaflet-container { z-index: 0; }
