@@ -1,68 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liberty Gas Station Menu</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Liberty Gas Station</title>
+  <meta name="description" content="Liberty Gas Station — Breakfast & Lunch Menu in Elkton, VA" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/favicon.ico" />
+  <meta property="og:title" content="Liberty Gas Station" />
+  <meta property="og:description" content="Breakfast & Lunch Menu in Elkton, VA" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-image.jpg" />
+  <meta property="og:url" content="https://elktonliberty.com" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Leaflet CSS (for interactive map) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
 </head>
-<body>
-  <header>
-    <div class="header-inner">
-      <h1 class="logo">Liberty Gas Station</h1>
-      <a class="cta" href="tel:+15402980340">Call</a>
+<body style="font-family: 'Poppins', sans-serif; color:#1f2a37; background:#fff;">
+  <header style="border-bottom:4px solid #0e7c86; padding:14px 0; position:sticky; top:0; background:#fff; z-index:10;">
+    <div class="container header-inner">
+      <h1 class="logo" style="font-family:'Merriweather', serif; font-size:32px;">Liberty Gas Station</h1>
+      <!-- Keep one clean call button -->
+    <a class="cta" href="tel:+15402980340" aria-label="Call (540) 298-0340">📞 Call</a>
     </div>
   </header>
 
-  <main class="container">
-    <div id="menu-container"></div>
-  </main>
+  <!-- Hero -->
+  <section class="hero" style="position:relative;">
+    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1600&auto=format&fit=crop" alt="Classic diner burger and fries" />
+    <div class="overlay">
+      <h2 style="font-family:'Merriweather', serif; font-size:28px;">Breakfast & Lunch · Elkton, VA</h2>
+    </div>
+  </section>
 
+  <main class="container grid">
+    <!-- LEFT: content -->
+    <div>
+      <!-- Map + address card -->
+      <section class="info" id="info" style="margin:0 0 22px 0;">
+        <div class="card map-card">
+          <div class="map-grid">
+            <!-- Details (left) -->
+            <div class="map-details" style="padding:16px;">
+              <h3>Find Us</h3>
+              <p style="margin:.25rem 0 0">607 7th St<br/>Elkton, VA 22827</p>
+              <div class="map-cta-row">
+                <a class="btn btn-primary" href="https://maps.google.com/?q=607+7th+St+Elkton+VA+22827" target="_blank" rel="noopener">📍 Get Directions</a>
+                <a class="btn btn-muted" href="#menu">🍽 View Menu</a>
+              </div>
+            </div>
+            <!-- Map (right) -->
+            <div class="map-frame">
+              <div id="map"></div>
+              <noscript>
+                <div style="padding:10px">
+                  <a href="https://maps.google.com/?q=607+7th+St+Elkton+VA+22827" target="_blank" rel="noopener">View map</a>
+                </div>
+              </noscript>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENU -->
+<section id="menu">
+  <!-- ===================== BREAKFAST ===================== -->
+  <h2 class="menu-title" style="color:#0e7c86; font-family:'Merriweather',serif;">Breakfast</h2>
+
+  <!-- Biscuits (suggested prices) -->
+  <div class="menu-block">
+    <h4>Biscuits</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy (if cheese), pork.">Sausage Biscuit</a></td><td class="price">$1.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten; pork.">Bacon Biscuit</a></td><td class="price">$1.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten; poultry.">Chicken Biscuit</a></td><td class="price">$2.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten; pork.">Ham Biscuit</a></td><td class="price">$1.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; pork.">Sausage &amp; Cheese Biscuit</a></td><td class="price">$2.49</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; pork.">Ham &amp; Cheese Biscuit</a></td><td class="price">$2.49</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; pork.">Sausage, Ham &amp; Cheese Biscuit</a></td><td class="price">$2.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Breakfast Pizza (by slice) -->
+  <div class="menu-block">
+    <h4>Breakfast Pizza (Slice)</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; pork.">Sausage</a></td><td class="price">$2.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy, egg; pork.">Sausage &amp; Egg</a></td><td class="price">$2.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pancakes Combos -->
+  <div class="menu-block">
+    <h4>Pancakes</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy, egg; pork.">Pancakes w/ Hash Brown &amp; Sausage</a></td><td class="price">$8.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy, egg; pork.">Pancakes w/ Hash Brown &amp; 2 Strips of Bacon</a></td><td class="price">$8.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Breakfast Specialty -->
+  <div class="menu-block">
+    <h4>Breakfast Specialty</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; pork.">Sausage Calzone (each)</a></td><td class="price">$5.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Breakfast Sides (suggested prices when missing) -->
+  <div class="menu-block">
+    <h4>Breakfast Sides</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: cooked in shared fryer (possible gluten cross-contact).">Hash Brown</a></td><td class="price">$1.49</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: cooked in shared fryer; may contain wheat if breaded.">Potato Wedges</a></td><td class="price">$2.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy; may be breaded (wheat).">Mozzarella Stick (each)</a></td><td class="price">$1.25</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===================== LUNCH & DINNER ===================== -->
+  <h2 class="menu-title" style="color:#0e7c86; font-family:'Merriweather',serif; margin-top:28px;">Lunch &amp; Dinner</h2>
+
+  <!-- Weekly Specials (by weight) -->
+  <div class="menu-block">
+    <h4>Weekly Specials (Sold by Weight)</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens vary by item; common: wheat (bread/noodles), dairy (cheese, sauces), soy (some sauces), eggs (dressings), pork (sausage/pulled pork). Cross-contact possible.">Price per lb</a></td><td class="price">$10.99/lb</td></tr>
+      </tbody>
+    </table>
+    <table class="menu-table" style="margin-top:10px;">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Sausage, Pulled Pork, Corn on the Cob, Spinach, Mashed Potatoes, Broccoli. Allergens vary by dish; buns with meals contain wheat.">Monday</a></td><td class="price">—</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Baked Chicken, Ground Beef, Broccoli &amp; Cheese, Mac &amp; Cheese, Collards, Green Beans, Tortillas. Common allergens: dairy, wheat (tortillas/mac), soy (some sauces).">Tuesday</a></td><td class="price">—</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Noodles, Fried Rice, Chicken, Corn, Greens. Common allergens: wheat (noodles), egg/soy (fried rice sauces).">Wednesday</a></td><td class="price">—</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Rice (Fried/White), Noodles, Curry Chicken or Lamb, Spinach Curry, Bean Curry, Bread. Common allergens: dairy (some curries), wheat (bread), soy (some sauces).">Thursday</a></td><td class="price">—</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Chicken Biryani, Green Curry, Mixed Vegetable Curry, Lentil, Bread (Naan/Roti/Tortilla). Common allergens: dairy (some curries), wheat (breads).">Friday</a></td><td class="price">—</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Sausage or Chicken or Lamb or Pulled Pork, Greens, Corn, Gravy, Tortilla. Allergens vary; wheat (tortilla), dairy (gravy).">Saturday</a></td><td class="price">—</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Buns served with all meals. Spaghetti always available.</p>
+  </div>
+
+  <!-- Pizzas -->
+  <div class="menu-block">
+    <h4>Pizzas (Two Sizes)</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy.">Cheese</a></td><td class="price">$13.99 / $17.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; may contain soy depending on toppings.">Supreme</a></td><td class="price">$13.99 / $17.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; pork.">Pepperoni</a></td><td class="price">$13.99 / $17.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; pork.">Pepperoni &amp; Sausage</a></td><td class="price">$13.99 / $17.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; poultry.">Chicken</a></td><td class="price">$13.99 / $17.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Wings -->
+  <div class="menu-block">
+    <h4>Wings</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: sauces/dips may contain dairy (ranch/bleu cheese), egg, soy; fried—gluten cross-contact possible.">6 pc (Plain/Hot/BBQ/Roasted)</a></td><td class="price">$5.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: sauces/dips may contain dairy (ranch/bleu cheese), egg, soy; fried—gluten cross-contact possible.">10 pc (Plain/Hot/BBQ/Roasted)</a></td><td class="price">$8.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Subs -->
+  <div class="menu-block">
+    <h4>Subs (6&quot; / 12&quot;)</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; may contain egg/soy in dressings.">Italiano</a></td><td class="price">$4.99 / $7.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; may contain soy.">Steak</a></td><td class="price">$4.99 / $7.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; poultry.">Chicken</a></td><td class="price">$4.99 / $7.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy; pork/beef in meatballs; may contain egg/soy.">Meatball</a></td><td class="price">$4.99 / $7.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten, dairy.">Ham &amp; Cheese</a></td><td class="price">$4.99 / $7.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Sides -->
+  <div class="menu-block">
+    <h4>Sides</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy; wheat if crusted.">Cheese Bread</a></td><td class="price">$5.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: cooked in shared fryer (possible gluten cross-contact).">French Fries</a></td><td class="price">$3.29</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: cooked in shared fryer; may contain wheat if breaded.">Potato Wedges</a></td><td class="price">$2.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy (cheese), wheat/soy possible in chili; fried cross-contact.">French Fries w/ Cheese &amp; Chili</a></td><td class="price">$7.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy/egg/soy depend on dressing; ask if needed.">Garden Salad (Sm/Lg)</a></td><td class="price">$5.99 / $8.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy/egg/soy depend on dressing; poultry.">Chicken Salad (Sm/Lg)</a></td><td class="price">$5.99 / $8.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Dessert -->
+  <div class="menu-block">
+    <h4>Desserts</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy, egg; crust usually wheat.">Cheesecake</a></td><td class="price">$5.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy.">Ice Cream Cup</a></td><td class="price">$3.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Sauces & Extras -->
+  <div class="menu-block">
+    <h4>Sauces &amp; Extras (each)</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy, egg.">Ranch Cup</a></td><td class="price">$0.79</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: usually none; check label.">Pizza Sauce Cup</a></td><td class="price">$0.79</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: usually none; check label.">Garlic Cup</a></td><td class="price">$0.79</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy, egg.">Bleu Cheese Cup</a></td><td class="price">$0.79</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: usually none.">Banana Pepper Cup</a></td><td class="price">$0.79</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: usually none.">Jalapeño Cup</a></td><td class="price">$0.79</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: usually none; may contain soy depending on brand.">Hot Sauce Cup</a></td><td class="price">$0.79</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: dairy, egg.">Jalapeño Ranch Cup</a></td><td class="price">$0.79</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: usually none; check label.">Sweet Chili Pepper Cup</a></td><td class="price">$0.79</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Always Available / Other -->
+  <div class="menu-block">
+    <h4>Other Items</h4>
+    <table class="menu-table">
+      <tbody>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat/gluten (pasta), dairy if topped with cheese.">Spaghetti (Sm/Lg)</a></td><td class="price">$2.99 / $4.99</td></tr>
+        <tr><td class="item-name"><a href="#" data-info="Allergens: wheat; may contain sesame.">Buns</a></td><td class="price">$0.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="note">Prices subject to change. Please inform us of any allergies or dietary restrictions; cross-contact may occur.</p>
+</section>
+    </div>
+
+    <!-- RIGHT: sidebar (hours only) -->
+<aside class="sidebar">
+  <!-- Call card (TOP) -->
+  <div class="card call-card">
+    <h3>Call</h3>
+    <a class="phone" href="tel:+15402980340" aria-label="Call (540) 298-0340">📞 (540) 298-0340</a>
+  </div>
+
+  <!-- Hours card (BELOW) -->
+  <div class="card hours-card">
+    <div class="today">Open today:</div>
+    <h3 style="margin-top:6px">Opening Hours</h3>
+    <ul class="hours-list">
+      <li><span class="hours-day">Monday</span><span class="hours-time">5 AM–10 PM</span></li>
+      <li><span class="hours-day">Tuesday</span><span class="hours-time">5 AM–10 PM</span></li>
+      <li><span class="hours-day">Wednesday</span><span class="hours-time">5 AM–10 PM</span></li>
+      <li><span class="hours-day">Thursday</span><span class="hours-time">5 AM–10 PM</span></li>
+      <li><span class="hours-day">Friday</span><span class="hours-time">5 AM–10 PM</span></li>
+      <li><span class="hours-day">Saturday</span><span class="hours-time">6 AM–10 PM</span></li>
+      <li><span class="hours-day">Sunday</span><span class="hours-time">6 AM–10 PM</span></li>
+    </ul>
+  </div>
+</aside>
+
+
+  </main>
   <footer>
-    <p>&copy; 2025 Liberty Gas Station</p>
+    <div class="container">
+      <p>© <span id="year"></span> Liberty Gas Station · <a href="tel:+15402980340" style="color:#0e7c86">Call (540) 298-0340</a></p>
+    </div>
   </footer>
 
-  <!-- Script for rendering menu from JSON -->
+  <!-- Nutrition Modal -->
+  <div id="nutritionModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="nutritionTitle">
+      <span class="close" aria-label="Close">&times;</span>
+      <h3 id="nutritionTitle" style="margin-top:0; color:#0e7c86; font-family:'Merriweather',serif;">Nutrition Facts</h3>
+      <p id="nutritionText">Details coming soon…</p>
+    </div>
+  </div>
+
+  <!-- Leaflet JS (for interactive map) -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin="">
+  </script>
+
+  <!-- App JS -->
   <script>
-    fetch('menu.json')
-      .then(response => response.json())
-      .then(menu => {
-        const container = document.getElementById('menu-container');
-        container.innerHTML = '';
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-        menu.sections.forEach(section => {
-          const sectionEl = document.createElement('div');
-          sectionEl.classList.add('menu-section');
+    // Nutrition modal
+    const modal = document.getElementById('nutritionModal');
+    const modalText = document.getElementById('nutritionText');
+    const closeBtn = document.querySelector('.close');
 
-          const heading = document.createElement('h2');
-          heading.textContent = section.name;
-          sectionEl.appendChild(heading);
+    function openModal(text){
+      modalText.textContent = text || 'No information available.';
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden','true');
+    }
 
-          section.items.forEach(item => {
-            const itemEl = document.createElement('div');
-            itemEl.classList.add('menu-item');
+    document.querySelectorAll('.item-name a, .menu-table .item-name a, .menu-table a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        openModal(link.getAttribute('data-info'));
+      });
+    });
 
-            const name = document.createElement('span');
-            name.textContent = item.name;
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+    window.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 
-            const price = document.createElement('span');
-            price.textContent = `$${item.price.toFixed(2)}`;
+    // Auto-highlight current day in hours list + badge
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const todayIndex = new Date().getDay();
+    const hoursListItems = document.querySelectorAll('.hours-list li');
+    hoursListItems.forEach(li => {
+      const dayName = li.querySelector('.hours-day').textContent.trim();
+      if(dayName === days[todayIndex]){
+        li.style.background = '#d9f0df';
+        li.style.borderRadius = '6px';
+        li.style.fontWeight = '600';
+        const todayBadge = document.querySelector('.hours-card .today');
+        if (todayBadge) todayBadge.textContent = `Open today: ${dayName}`;
+      }
+    });
 
-            itemEl.appendChild(name);
-            itemEl.appendChild(price);
+    // Interactive map (Leaflet + OSM)
+    (function() {
+      var fallbackLat = 38.4047, fallbackLng = -78.6239, fallbackZoom = 15;
+      var mapEl = document.getElementById('map');
+      if (!mapEl) return;
 
-            // Modal or alert for allergens
-            itemEl.addEventListener('click', () => {
-              alert(`Allergens: ${item.allergens.join(', ') || 'None listed'}`);
-            });
+      var map = L.map('map', {scrollWheelZoom: true});
+      map.setView([fallbackLat, fallbackLng], fallbackZoom);
 
-            sectionEl.appendChild(itemEl);
-          });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
 
-          container.appendChild(sectionEl);
-        });
+      var popupHtml =
+        '<strong>Liberty Gas Station</strong><br>' +
+        '607 7th St, Elkton, VA 22827<br>' +
+        '<a href="https://maps.google.com/?q=607+7th+St+Elkton+VA+22827" target="_blank" rel="noopener">Get Directions</a>';
+
+      var marker = L.marker([fallbackLat, fallbackLng]).addTo(map).bindPopup(popupHtml);
+
+      // Try geocoding address; fallback coords if rate-limited
+      var q = encodeURIComponent('607 7th St, Elkton, VA 22827');
+      fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + q, {
+        headers: { 'Accept': 'application/json' }
       })
-      .catch(err => console.error('Error loading menu:', err));
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(data){
+        if (Array.isArray(data) && data.length > 0) {
+          var lat = parseFloat(data[0].lat), lon = parseFloat(data[0].lon);
+          map.setView([lat, lon], fallbackZoom);
+          marker.setLatLng([lat, lon]);
+        }
+      })
+      .catch(function(){ /* keep fallback */ });
+    })();
   </script>
 </body>
 </html>
