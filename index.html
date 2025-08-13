@@ -131,30 +131,28 @@
 <section class="info" id="info">
   <div class="card map-card">
     <div class="map-grid">
-      <!-- Interactive map (no API key needed) -->
-      <iframe
-        class="map-embed"
-        loading="lazy"
-        allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=607+7th+St,+Elkton,+VA+22827&output=embed">
-      </iframe>
-
-      <!-- Address & actions -->
-      <div>
+      <!-- Details (left) -->
+      <div class="map-details">
         <h3>Find Us</h3>
         <p style="margin:.25rem 0 0">607 7th St<br/>Elkton, VA 22827</p>
-        <p style="margin:.4rem 0 0;"><strong>Phone:</strong> <a href="tel:+15402980340">(540) 298-0340</a></p>
-
         <div class="map-cta-row">
           <a class="btn btn-primary" href="https://maps.google.com/?q=607+7th+St+Elkton+VA+22827" target="_blank" rel="noopener">📍 Get Directions</a>
-          <a class="btn btn-muted" href="#menu">🍽 View Full Menu</a>
         </div>
+      </div>
+
+      <!-- Map (right) -->
+      <div class="map-frame">
+        <iframe
+          class="map-embed"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=607+7th+St,+Elkton,+VA+22827&output=embed">
+        </iframe>
       </div>
     </div>
   </div>
 </section>
-
 
       <!-- MENU -->
       <section id="menu">
