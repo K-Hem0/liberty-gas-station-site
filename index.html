@@ -337,19 +337,36 @@
     window.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 
     // Auto-highlight current day in hours list + badge
-    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    const todayIndex = new Date().getDay();
-    const hoursListItems = document.querySelectorAll('.hours-list li');
-    hoursListItems.forEach(li => {
-      const dayName = li.querySelector('.hours-day').textContent.trim();
-      if(dayName === days[todayIndex]){
-        li.style.background = '#d9f0df';
-        li.style.borderRadius = '6px';
-        li.style.fontWeight = '600';
-        const todayBadge = document.querySelector('.hours-card .today');
-        if (todayBadge) todayBadge.textContent = `Open today: ${dayName}`;
-      }
-    });
+// Auto-highlight current day in hours list + badge
+function highlightToday(){
+  const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const todayIndex = new Date().getDay();
+  const hoursListItems = document.querySelectorAll('.hours-list li');
+  let todayHours = '';
+  let todayName  = days[todayIndex];
+
+  hoursListItems.forEach(li => {
+    const dayEl  = li.querySelector('.hours-day');
+    const timeEl = li.querySelector('.hours-time');
+    const dayName = dayEl?.textContent.trim();
+    if(dayName === todayName){
+      li.style.background = '#d9f0df';
+      li.style.borderRadius = '6px';
+      li.style.fontWeight = '600';
+      todayHours = timeEl ? timeEl.textContent.trim() : '';
+    }
+  });
+
+  const todayBadge = document.querySelector('.hours-card .today');
+  if (todayBadge) {
+    todayBadge.textContent = todayHours
+      ? `Open today: ${todayHours}`
+      : `Open today: ${todayName}`;
+  }
+}
+// initial highlight for the static HTML (renderer will call again after it rewrites hours)
+highlightToday();
+
 
     // Interactive map (Leaflet + OSM)
     (function() {
