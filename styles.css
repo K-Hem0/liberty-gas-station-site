@@ -170,7 +170,7 @@ table.menu-table {
 /* ===== Generic layout helpers ===== */
 .container { width: 92%; max-width: 1150px; margin: 0 auto; }
 .header-inner{ display:flex; justify-content:space-between; align-items:center; }
-.logo { margin:0; color:#c93b2b; font-weight:700; }
+.logo img {height: auto; max-height: 80px; /* adjust to fit */ width: auto; display: block;}
 .cta { background:#c93b2b; color:#fff; padding:.55rem .9rem; border-radius:8px; font-weight:600; text-decoration:none; }
 .cta:hover { opacity:.92; }
 
